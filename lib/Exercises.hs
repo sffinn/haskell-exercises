@@ -1,6 +1,7 @@
 module Exercises (
-    add,
+    factorial,
 ) where
 
-add :: Int -> Int -> Int
-add x y = x + y
+factorial :: Int -> Int
+factorial 0 = 1
+factorial x = x * factorial (x - 1)

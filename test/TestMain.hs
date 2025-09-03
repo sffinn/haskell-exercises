@@ -3,16 +3,21 @@ import System.Exit (exitSuccess, exitFailure)
 
 import Exercises
 
--- Test cases
-testAdd = TestCase $ assertEqual "add 2 3 should be 5" 5 (Exercises.add 2 3)
-testAddZero = TestCase $ assertEqual "add 0 0 should be 0" 0 (Exercises.add 0 0)
+-- 1. Factorial Function
+testFactorial :: Test
+testFactorial = TestCase $ assertEqual "factorial 6 should be 720" 720 (Exercises.factorial 6)
+testFactorialZero :: Test
+testFactorialZero = TestCase $ assertEqual "factorial 0 should be 1" 1 (Exercises.factorial 0)
 
--- Test suite
-tests = TestList [TestLabel "testAdd" testAdd, TestLabel "testAddZero" testAddZero]
+factorialTests :: Test
+factorialTests = TestLabel "Factorial Tests" (TestList [testFactorial, testFactorialZero])
+
+allTests :: Test
+allTests = TestList [factorialTests]
 
 main :: IO ()
 main = do
-  counts <- runTestTT tests
-  if failures counts == 0 && errors counts == 0
-    then exitSuccess
-    else exitFailure
+    results <- runTestTT allTests
+    if failures results == 0 && errors results == 0
+        then exitSuccess
+        else exitFailure
