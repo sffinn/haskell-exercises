@@ -23,8 +23,17 @@ testFibonacciOne = TestCase $ assertEqual "factorial 1 should be 1" 1 (Exercises
 fibonacciTests :: Test
 fibonacciTests = TestLabel "Fibonacci Tests" (TestList [testFibonacci, testFibonacciZero, testFibonacciOne])
 
+-- 3. List Sum
+testSumList :: Test
+testSumList = TestCase $ assertEqual "sum list should be 6" 6  (Exercises.sumList [1, 2, 3, 0])
+testSumListZero :: Test
+testSumListZero = TestCase $ assertEqual "sum list with empty list should be 0" 0  (Exercises.sumList [])
+
+sumListTests :: Test
+sumListTests = TestLabel "List Sum Tests" (TestList [testSumList, testSumListZero])
+
 allTests :: Test
-allTests = TestList [factorialTests, fibonacciTests]
+allTests = TestList [factorialTests, fibonacciTests, sumListTests]
 
 main :: IO ()
 main = do

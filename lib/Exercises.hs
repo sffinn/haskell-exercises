@@ -1,6 +1,7 @@
 module Exercises (
     factorial,
     fib,
+    sumList,
 ) where
 
 factorial :: Int -> Int
@@ -11,3 +12,8 @@ fib :: Int -> Int
 fib 0 = 0
 fib 1 = 1
 fib x = fib (x - 1) + fib (x - 2)
+
+sumList :: [Int] -> Int
+sumList [] = 0
+sumList (x:xs) =
+  x + (sumList xs)
